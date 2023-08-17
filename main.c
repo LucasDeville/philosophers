@@ -6,13 +6,27 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:42:03 by ldeville          #+#    #+#             */
-/*   Updated: 2023/08/17 15:47:20 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:03:44 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 
+
+
+int	init_check(t_infos *infos, char **argv)
+{
+	/*int	tmp;
+
+	tmp = atoi(argv[1]);
+	if (tmp < 1)
+		return (-1);
+	infos->num_philo = tmp;*/
+
+
+	return (1);
+}
 
 int main(int argc, char **argv, char **str)
 {
@@ -21,9 +35,14 @@ int main(int argc, char **argv, char **str)
 	(void)str;
 	t_infos	*infos;
 
-	if (argv != 5 || argv != 6)
+	if (argc != 5 && argc != 6)
 		return (-1);
-	
+	if	(!init(infos, argv) || !check_argv(argv))
+	{
+		//free infos
+		return (-1);
+	}
+
 	infos = ft_calloc(sizeof(t_infos), 1);
 
 

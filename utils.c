@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/09 14:43:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/08/17 17:01:56 by ldeville         ###   ########.fr       */
+/*   Created: 2023/08/17 16:57:32 by ldeville          #+#    #+#             */
+/*   Updated: 2023/08/17 17:02:03 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+/*
 
-# include <stdio.h>
-
-typedef struct s_infos
+int atoi(char *str)
 {
-    t_philo *philo;
-    int num_philo;
-    int die_time;
-    int eat_time;
-    int sleep_time;
-    int max_eat;
-} t_infos;
+    int nb;
 
-typedef struct s_philo
-{
-    int exit;
-} t_philo;
+    nb = 0;
+    if (str[0] == )
+    while ()
 
-
-#endif
+    return (nb);
+}*/
