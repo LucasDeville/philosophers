@@ -12,9 +12,6 @@
 
 #include "philosophers.h"
 
-
-
-
 int	init_check(t_infos *infos, char **argv)
 {
 	/*int	tmp;
