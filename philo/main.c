@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:42:03 by ldeville          #+#    #+#             */
-/*   Updated: 2023/08/17 17:03:44 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/10/13 00:48:36 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,21 @@ int	init_check(t_infos *infos, char **argv)
 	return (1);
 }
 
-int main(int argc, char **argv, char **str)
+int	main(int argc, char **argv)
 {
-	(void)argv;
-	(void)argc;
-	(void)str;
 	t_infos	*infos;
 
 	if (argc != 5 && argc != 6)
 		return (-1);
-	if	(!init(infos, argv) || !check_argv(argv))
-	{
-		//free infos
-		return (-1);
-	}
-
 	infos = ft_calloc(sizeof(t_infos), 1);
+	if (!check_argv(argv) || !init(infos, argv))
+		return (printf("Error : Invalid argument\n"), -1);
+
+/*
+	TO DO :
+		ARGV -> Check character - Only numeric
+		ADD ARGV to struct -> atoi | argc 6
+*/
 
 
 
