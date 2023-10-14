@@ -1,7 +1,7 @@
 MAKEFLAGS += --silent
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-SRCS = main.c
+CFLAGS = -Wall -Wextra -Werror -g
+SRCS = main.c init.c utils.c thread.c tasks.c
 OBJS_EXEC = ${SRCS:.c=.o}
 EXEC = philo
 
