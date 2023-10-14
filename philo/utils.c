@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:18:52 by ldeville          #+#    #+#             */
-/*   Updated: 2023/10/14 11:13:08 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/10/14 14:08:30 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@ long	get_time(void)
 
 void	print_action(t_philo *p, char *str)
 {
-	pthread_mutex_lock(&p->infos->m_write);
-	printf("%ld %i %s\n", get_time() - p->infos->start_time, p->num, str);
-	pthread_mutex_unlock(&p->infos->m_write);
+	if (!stop(p))
+	{
+		pthread_mutex_lock(&p->infos->m_write);
+		printf("%ld %i %s\n", get_time() - p->infos->start_time, p->num, str);
+		pthread_mutex_unlock(&p->infos->m_write);
+	}
 }
 
 void	*ft_calloc(size_t nmemb, size_t size)

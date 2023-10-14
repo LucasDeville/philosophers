@@ -55,6 +55,7 @@ int			ft_strlen(char *str);
 void		*ft_calloc(size_t nmemb, size_t size);
 
 /*		init.c		*/
+void		ft_usleep(long time);
 int			check_argv(char **argv);
 t_philo		*init(t_infos *info, int argc, char **argv);
 

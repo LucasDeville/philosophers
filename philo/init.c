@@ -6,11 +6,21 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:27:58 by user              #+#    #+#             */
-/*   Updated: 2023/10/14 11:41:22 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:52:04 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	ft_usleep(long time)
+{
+	long	start;
+
+	start = get_time();
+	while ((get_time() - start) < time)
+		usleep(time / 10);
+}
+
 
 t_philo	*init_philo(t_infos *infos)
 {
