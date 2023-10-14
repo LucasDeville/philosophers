@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 10:12:03 by ldeville          #+#    #+#             */
-/*   Updated: 2023/10/14 14:13:15 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/10/14 14:20:12 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	dead(t_philo *p)
 {
+	ft_usleep(1);
 	pthread_mutex_lock(&p->infos->m_write);
 	printf("%ld %i is dead\n", get_time() - p->infos->start_time, p->num);
 	pthread_mutex_unlock(&p->infos->m_write);
