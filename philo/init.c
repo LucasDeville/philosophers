@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:27:58 by user              #+#    #+#             */
-/*   Updated: 2023/10/16 11:32:08 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:06:18 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 void	ft_usleep(long time)
 {
-	long	start;
-
-	start = get_time();
-	while ((get_time() - start) < time)
-		usleep(time / 10);
+	usleep(time * 1000);
 }
 
 t_philo	*init_philo(t_infos *infos)

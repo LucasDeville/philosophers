@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:11:57 by ldeville          #+#    #+#             */
-/*   Updated: 2023/10/16 16:34:54 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:34:51 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*check(void *philo)
 	long		die;
 
 	p = (t_philo *)philo;
-	ft_usleep(p->infos->tdie + 1);
+	ft_usleep(p->infos->tdie);
 	pthread_mutex_lock(&p->infos->m_eat);
 	if (p->last_meal == 0)
 		meal = get_time() - p->infos->start_time;
