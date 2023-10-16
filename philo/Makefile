@@ -10,7 +10,7 @@ all: ${EXEC}
 	echo "\033[7;32m~| Tous les fichiers sont à jour ! |~\033[0m"\
 
 ${EXEC}: ${OBJS_EXEC}
-	${CC} ${CFLAGS} -I ./philosophers.h ${OBJS_EXEC} -o ${EXEC} \
+	${CC} ${CFLAGS} -I ./philosophers.h ${OBJS_EXEC} -o ${EXEC} -lpthread \
 		&& echo "\033[1;32m~| Compilation du $@ : OK |~\033[0m"\
 		|| echo "\033[1;31m~| Compilation du $@ : Erreur |~\033[0m"
 

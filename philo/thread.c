@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:11:57 by ldeville          #+#    #+#             */
-/*   Updated: 2023/10/16 11:36:08 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:34:54 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	check_meal(t_philo *p)
 		{
 			pthread_mutex_lock(&p->infos->m_stop);
 			p->infos->stop = 1;
-			pthread_mutex_unlock(&p->infos->m_meal);
 			pthread_mutex_unlock(&p->infos->m_stop);
+			pthread_mutex_unlock(&p->infos->m_meal);
 			return (0);
 		}
 	}
@@ -40,12 +40,15 @@ void	*check(void *philo)
 
 	p = (t_philo *)philo;
 	ft_usleep(p->infos->tdie + 1);
-	pthread_mutex_lock(&p->infos->m_dead);
-	if (p->last_meal == 0) //MUTEX THIS ONE ??
-		meal = get_time() - p->infos->start_time; //Maybe start time ??
+	pthread_mutex_lock(&p->infos->m_eat);
+	if (p->last_meal == 0)
+		meal = get_time() - p->infos->start_time;
 	else
 		meal = get_time() - p->last_meal;
+	pthread_mutex_unlock(&p->infos->m_eat);
+	pthread_mutex_lock(&p->infos->m_dead);
 	die = p->infos->tdie;
+	pthread_mutex_unlock(&p->infos->m_dead);
 	pthread_mutex_lock(&p->infos->m_stop);
 	if (p->infos->stop == 0 && meal >= die)
 	{
@@ -53,7 +56,6 @@ void	*check(void *philo)
 		p->infos->stop = 1;
 	}
 	pthread_mutex_unlock(&p->infos->m_stop);
-	pthread_mutex_unlock(&p->infos->m_dead);
 	return (NULL);
 }
 
