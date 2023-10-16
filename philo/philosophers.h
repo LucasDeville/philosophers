@@ -35,6 +35,7 @@ typedef struct s_infos
 	long			actual_eat;
 	long			stop;
 	long			start_time;
+	pthread_mutex_t	*forks;
 }	t_infos;
 
 typedef struct s_philo

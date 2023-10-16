@@ -55,8 +55,8 @@ void	eating(t_philo *p)
 	pthread_mutex_unlock(&p->infos->m_eat);
 	p->meal++;
 	ft_usleep(p->infos->teat);
-	pthread_mutex_unlock(&p->f_g);
 	pthread_mutex_unlock(p->f_d);
+	pthread_mutex_unlock(&p->f_g);
 	sleeping(p);
 	thinking(p);
 }

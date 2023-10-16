@@ -14,6 +14,7 @@
 
 void	free_all(t_philo *philo)
 {
+	free(philo[0].infos->forks);
 	free(philo[0].infos);
 	free(philo);
 }
@@ -30,6 +31,7 @@ int	main(int argc, char **argv)
 		return (free(infos), printf("Error : Invalid argument\n"), -1);
 	philo = init(infos, argc, argv);
 	thread(philo);
+	ft_usleep(500);
 	free_all(philo);
 	return (0);
 }

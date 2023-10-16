@@ -19,22 +19,28 @@ void	ft_usleep(long time)
 
 t_philo	*init_philo(t_infos *infos)
 {
-	int		i;
-	t_philo	*philo;
+	int				i;
+	t_philo			*philo;
+	pthread_mutex_t	*forks;
 
 	i = 0;
 	philo = ft_calloc((int)infos->nphilo + 1, sizeof(t_philo));
+	forks = ft_calloc((int)infos->nphilo + 1, sizeof(pthread_mutex_t));
+	while (i < infos->nphilo)
+		pthread_mutex_init(&forks[i++], NULL);
+	i = 0;
 	while (i < infos->nphilo)
 	{
 		philo[i].num = i + 1;
-		pthread_mutex_init(&philo[i].f_g, NULL);
+		philo[i].f_g = forks[i];
 		if (i == infos->nphilo - 1)
-			philo[i].f_d = &philo[0].f_g;
+			philo[i].f_d = &forks[infos->nphilo - 1];
 		else
-			philo[i].f_d = &philo[i + 1].f_g;
+			philo[i].f_d = &forks[i + 1];
 		philo[i].infos = infos;
 		i++;
 	}
+	infos->forks = forks;
 	return (philo);
 }
 
