@@ -25,12 +25,14 @@ typedef struct s_infos
 	pthread_mutex_t	m_write;
 	pthread_mutex_t	m_dead;
 	pthread_mutex_t	m_stop;
+	pthread_mutex_t	m_meal;
 	long			nphilo;
 	long			tdie;
 	long			teat;
 	long			tsleep;
 	int				death;
 	long			max_eat;
+	long			actual_eat;
 	long			stop;
 	long			start_time;
 }	t_infos;
@@ -41,7 +43,8 @@ typedef struct s_philo
 	pthread_t		t_id;
 	pthread_t		t_check;
 	long			last_meal;
-	int				dead;
+	int				end;
+	int				meal;
 	pthread_mutex_t	f_g;
 	pthread_mutex_t	*f_d;
 	t_infos			*infos;

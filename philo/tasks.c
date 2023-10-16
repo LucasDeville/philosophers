@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 10:12:03 by ldeville          #+#    #+#             */
-/*   Updated: 2023/10/14 14:20:12 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:24:39 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	dead(t_philo *p)
 {
-	ft_usleep(1);
 	pthread_mutex_lock(&p->infos->m_write);
 	printf("%ld %i is dead\n", get_time() - p->infos->start_time, p->num);
 	pthread_mutex_unlock(&p->infos->m_write);
@@ -28,19 +27,6 @@ int	stop(t_philo *p)
 	return (pthread_mutex_unlock(&p->infos->m_stop), 0);
 }
 
-void	eating(t_philo *p)
-{
-	pthread_mutex_lock(p->f_d);
-	print_action(p, "has taken a fork");
-	pthread_mutex_lock(&p->f_g);
-	print_action(p, "has taken a fork");
-	print_action(p, "is eating");
-	p->last_meal = get_time();
-	ft_usleep(p->infos->teat);
-	pthread_mutex_unlock(p->f_d);
-	pthread_mutex_unlock(&p->f_g);
-}
-
 void	sleeping(t_philo *p)
 {
 	print_action(p, "is sleeping");
@@ -50,4 +36,25 @@ void	sleeping(t_philo *p)
 void	thinking(t_philo *p)
 {
 	print_action(p, "is thinking");
+}
+
+void	eating(t_philo *p)
+{
+	pthread_mutex_lock(p->f_d);
+	print_action(p, "has taken a fork");
+	if (p->infos->nphilo < 2)
+	{
+		ft_usleep(p->infos->tdie + 1);
+		return (pthread_mutex_unlock(p->f_d), (void)0);
+	}
+	pthread_mutex_lock(&p->f_g);
+	print_action(p, "has taken a fork");
+	print_action(p, "is eating");
+	p->last_meal = get_time();
+	p->meal++;
+	ft_usleep(p->infos->teat);
+	pthread_mutex_unlock(p->f_d);
+	pthread_mutex_unlock(&p->f_g);
+	sleeping(p);
+	thinking(p);
 }

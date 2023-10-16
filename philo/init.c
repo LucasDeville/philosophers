@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:27:58 by user              #+#    #+#             */
-/*   Updated: 2023/10/14 13:52:04 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:32:08 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	ft_usleep(long time)
 	while ((get_time() - start) < time)
 		usleep(time / 10);
 }
-
 
 t_philo	*init_philo(t_infos *infos)
 {
@@ -58,6 +57,7 @@ t_philo	*init(t_infos *info, int argc, char **argv)
 	pthread_mutex_init(&info->m_write, NULL);
 	pthread_mutex_init(&info->m_dead, NULL);
 	pthread_mutex_init(&info->m_stop, NULL);
+	pthread_mutex_init(&info->m_meal, NULL);
 	return (init_philo(info));
 }
 
@@ -67,15 +67,16 @@ int	check_argv(char **argv)
 	int	y;
 
 	i = 0;
-	y = 0;
+	y = 1;
 	while (argv[y])
 	{
+		i = -1;
 		if (ft_strlen(argv[y]) > 10)
-			return (-1);
-		while (argv[y][i])
+			return (0);
+		while (argv[y][++i])
 		{
 			if (argv[y][i] < '0' || argv[y][i] > '9')
-				return (-1);
+				return (0);
 		}
 		y++;
 	}
